@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LoadImg</title>
+</head>
+
+<body>
+<script>
+    function changeImg(source, dest) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            source.src = e.target.result;
+        };
+        reader.readAsDataURL(dest.files[0]);
+    }
+</script>
+
+<form enctype="multipart/form-data" action="upload.php" method="POST">
+    <div style="height:100px; width:100px;">
+        <img id="myImg" class="show" src="school_img.png" alt="school_img" width="100%">
+    </div>
+
+    <input id="myFiles" name="userfile" type="file" onchange="changeImg(document.getElementById('myImg'), this)"><br><br>
+    <input type="submit" value="Send File">
+</form>
+</body>
+</html>
